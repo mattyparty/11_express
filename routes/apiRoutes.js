@@ -1,19 +1,22 @@
 const router = require("express").Router();
-const notesData = require("../db/db.json");
+const notesData = require("../db/db");
 const path = require("path");
-//const fs = require("fs")
-// let rawdata = fs.readFileSync(notesData)
-// let rawdata2 = JSON.parse(rawdata)
 
-// router.route("/api/notes").get((_req, res) => {
-//   //res.json(notesData);
-//   console.log("test");
-//   //console.log(notesData);
-// });
-
-//sends you to the notes html page
-router.get("/notes", (_req, res) => {
-  res.sendFile(path.join(__dirname, "../public/notes.html"));
+router.get("/notes", function (req, res) {
+  res.json(notesData);
 });
 
+// router.post("/notes", function (req, res) {
+//   store
+//     .addNote(req.body)
+//     .then((notes) => res.json(notes))
+//     .catch((err) => res.status(500).json(err));
+// });
+
+// // router.delete("/notes/:title", function (req, res) {
+// //   store
+// //     .deleteNotes(req.params.title)
+// //     .then(() => res.json({ ok: true }))
+// //     .catch((err) => res.status(500).json(err));
+// // });
 module.exports = router;

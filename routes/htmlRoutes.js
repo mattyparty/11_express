@@ -7,10 +7,10 @@ router.get("/notes", (_req, res) => {
   res.sendFile(path.join(__dirname, "../public/notes.html"));
 });
 
-//might need this for heroku
-// router.get("/", function(req, res) {
-//   res.json(path.join(__dirname, "public/index.html"));
-//   });
+//Code need for heroku
+router.get("/", function (req, res) {
+  res.json(path.join(__dirname, "public/index.html"));
+});
 
 router.get("*", (_req, res) => {
   res.sendFile(path.join(__dirname, "../public/index.html"));

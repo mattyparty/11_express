@@ -4,27 +4,27 @@
 // ==============================================================================
 
 const express = require("express");
-const htmlRoutes = require("./routes/htmlRoutes.js");
-const apiRoutes = require("./routes/apiRoutes.js");
+
 // ==============================================================================
 // EXPRESS CONFIGURATION
 // This sets up the basic properties for our express server
 // ==============================================================================
-
-// Tells node that we are creating an "express" server
 const app = express();
+// Tells node that we are creating an "express" server
 
 // Sets an initial port. We"ll use this later in our listener
 const PORT = process.env.PORT || 8080;
+
+app.use(express.static("public"));
 
 // Sets up the Express app to handle data parsing
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.use(express.static("public"));
-
-app.use("/api", apiRoutes);
-app.use("/", htmlRoutes);
+const apiRoutes = require("./routes/apiRoutes");
+app.use(apiRoutes);
+const htmlRoutes = require("./routes/htmlRoutes");
+app.use(htmlRoutes);
 
 app.listen(PORT, () => {
   console.log("App listening on PORT: " + PORT);
